@@ -3,7 +3,6 @@ import {} from "https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"
 import { getCSV2 } from './q2Serve.js';
 import { getCSV } from './q1Serve.js';
 const matchWon= await getCSV2();
-console.log(matchWon)
 const year= await getCSV();
 const onlyYear=Object.keys(year);
 const teams=Object.keys(matchWon);
