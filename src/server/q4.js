@@ -10,13 +10,14 @@ for(let i=0;i<10;i++)
 {
 topTen[i]=top[i]
 }
+console.log(topTen)
 for(let j=0;j<10;j++)
 {
-   for(let k=0;k<2;k++) {
+  
    players.push(topTen[j][0]);
 scores.push(topTen[j][1]);
 
-    }
+
 }
 
 
@@ -30,7 +31,7 @@ scores.push(topTen[j][1]);
         data: {
             labels: players,
             datasets: [{
-                label: 'Number of extra runs',
+                label: 'average ',
                 data: scores,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)'
