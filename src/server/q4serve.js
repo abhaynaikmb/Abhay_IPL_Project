@@ -48,7 +48,7 @@ for (let x in economy) {
 }
 
 sorted.sort(function(a, b) {
-    return b[1] - a[1];
+    return a[1] - b[1];
 });
 
 
