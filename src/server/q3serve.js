@@ -10,41 +10,31 @@ const getData2 = await fetch('http://127.0.0.1:5500/iplGraph/src/data/deliveries
 
 const dataDeliveries = await getData2.text();
 
-const rows2 =dataDeliveries.split('\n').slice(1).map((row)=> {
+const deliveriesData =dataDeliveries.split('\n').slice(1).map((row)=> {
         let finalRow= row.split(',');
      return finalRow
      });
-const rows =dataMatches.split('\n').slice(1).map((row)=> {
+const matchesData =dataMatches.split('\n').slice(1).map((row)=> {
    let finalRow= row.split(',');
 return finalRow
 });
-let IdNumber = []
-let j = 0;
-for(let i=0;i<rows.length;i++){
-        if(rows[i][1]=='2016'){
-                IdNumber[j] = rows[i][0];
-                j++;
-        }
-}
-let k=0;
-let m = 136365;
-let teamObject = {};
-for(let i=m;i<rows2.length;i++){
-        if(rows2[i][0] > IdNumber[0] && rows2[i][0] != IdNumber[k]){k = k + 1}
-        if(rows2[i][0] == IdNumber[k]){
-    if(teamObject[rows2[i][2]]){teamObject[rows2[i][2]]+=parseInt(rows2[i][16])}
-    else{teamObject[rows2[i][2]]=parseInt(rows2[i][16])}      
-}
-}
+const filteredID = matchesData.filter((each)=>{
+        if(each[1]=='2016')
+        return each;
+})
 
+let filteredDeliveries = deliveriesData.filter((each)=>{
+        let id =Number(each[0]);
+        if(id >= Number(filteredID[0][0]) && id <=Number(filteredID[filteredID.length - 1][0]))
+        return each;
+});
 
-
-
-
-
-
-
-return teamObject;
+let extraRuns = filteredDeliveries.reduce((total,each)=>{
+        if(total[each[3]] != undefined){total[each[3]] += Number(each[16])}
+        else{total[each[3]] = Number(each[16])}
+        return total
+},{})
+return extraRuns;
 
 }
 export{getCSV3}

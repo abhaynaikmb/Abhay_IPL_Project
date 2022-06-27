@@ -10,7 +10,7 @@ for(let i=0;i<10;i++)
 {
 topTen[i]=top[i]
 }
-console.log(topTen)
+
 for(let j=0;j<10;j++)
 {
   
